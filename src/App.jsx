@@ -8,7 +8,7 @@ const App = () => {
       navigator.serviceWorker
         .register("/service-worker.js")
         .then((registration) => {
-          console.log(registration);
+          // console.log(registration);
         })
         .catch((err) => console.log("ServiceWorker error:", err));
     });
