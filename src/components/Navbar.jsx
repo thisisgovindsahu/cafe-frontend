@@ -1,0 +1,124 @@
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { CartContext } from "../contexts/Cart";
+import gsap from "gsap";
+import axios from "axios";
+
+const Navbar = ({ name }) => {
+  const [cart] = useContext(CartContext);
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const navigate = useNavigate();
+
+  const menuRef = useRef();
+
+  const displayMenu = () => {
+    gsap.to(menuRef.current, {
+      transform: "translateX(0%)",
+      duration: 0.2,
+    });
+  };
+
+  const hideMenu = () => {
+    gsap.to(menuRef.current, {
+      transform: "translateX(100%)",
+      duration: 0.2,
+    });
+  };
+
+  const handleLogout = async () => {
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URI}/components/routes/users/logout.php`
+      );
+      if (data?.success) {
+        navigate("/loginpage");
+        localStorage.removeItem("user");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <>
+      <nav
+        id="nav"
+        className="bg-[#444] shadow-sm fixed top-0 left-0 w-full z-2">
+        <div className="max-full mx-auto">
+          <div className="flex justify-between md:justify-around h-16 md:h-20 w-full ">
+            <div className="flex items-center cursor-pointer">
+              <h2 className="text-[20px] md:text-3xl font-semibold text-white">
+                {name}
+              </h2>
+            </div>
+            <div className="flex items-center space-x-8 text-[18px] md:text-3xl">
+              {window.innerWidth >= 700 ? (
+                user ? (
+                  <div className="nav-right flex items-center gap-8">
+                    <div className="nav-links text-[20px] flex gap-8 item-center">
+                      <NavLink className={"nav-link"} to={"/"}>
+                        Home
+                      </NavLink>
+                      <NavLink className={"link"} to={"/dashboard"}>
+                        Dashboard
+                      </NavLink>
+                      <NavLink className={"link"} to={"/cartpage"}>
+                        Cart ({cart?.length})
+                      </NavLink>
+                    </div>
+                    <div
+                      id="logout-btn"
+                      className="text-[21px]"
+                      onClick={(e) => {
+                        handleLogout();
+                      }}>
+                      <span>Logout</span>
+                    </div>
+                  </div>
+                ) : (
+                  <NavLink
+                    to="/cartpage"
+                    className="text-white hover:text-blue-600">
+                    Cart <i className="ri-shopping-cart-line"></i> (
+                    {cart?.length})
+                  </NavLink>
+                )
+              ) : (
+                <i
+                  className="ri-menu-fill text-2xl"
+                  onClick={(e) => {
+                    displayMenu();
+                  }}></i>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div
+        ref={menuRef}
+        id="side-menu"
+        className="flex flex-col items-end gap-10">
+        <div
+          className="back-btn"
+          onClick={(e) => {
+            hideMenu();
+          }}>
+          Back
+        </div>
+        <div className="menu-links flex flex-col gap-10 text-[18px]">
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/dashboard"}>Dashboard</NavLink>
+          <NavLink to={"/cartpage"}>Cart</NavLink>
+        </div>
+        <div
+          id="menu-logout-btn"
+          className="text-[20px] bg-[yellow] text-black rounded-2xl">
+          <span>Logout</span>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Navbar;
