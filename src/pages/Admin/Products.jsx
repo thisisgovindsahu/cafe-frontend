@@ -269,7 +269,6 @@ const Products = () => {
               }}
               className="upt-img"
               onClick={(e) => {
-                setUpdateMode(false);
                 refImage.current.click();
               }}>
               Change Image
