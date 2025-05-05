@@ -145,6 +145,21 @@ const Products = () => {
     }
   };
 
+  const handleDeleteProduct = async (id) => {
+    try {
+      const { data } = await axios.delete(
+        `${
+          import.meta.env.VITE_API_URI
+        }/components/routes/products/delete.php?productid=${id}&aid=${user?.id}`
+      );
+      if (data?.success) {
+        fetchProducts();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div id="products-page">
       <div className="form-container">
@@ -323,7 +338,9 @@ const Products = () => {
                 </p>
               </div>
               <div className="product-actions flex gap-5 justify-center items-center">
-                <button className="bg-red-500 text-white px-4 py-2 rounded">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                  onClick={() => handleDeleteProduct(p.id)}>
                   Delete
                 </button>
                 <button
