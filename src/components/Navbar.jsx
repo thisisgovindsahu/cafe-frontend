@@ -31,7 +31,11 @@ const Navbar = ({ name }) => {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URI}/components/routes/users/logout.php`
       );
+
       if (data?.success) {
+        navigate("/loginpage");
+        localStorage.removeItem("user");
+      } else {
         navigate("/loginpage");
         localStorage.removeItem("user");
       }
@@ -47,7 +51,9 @@ const Navbar = ({ name }) => {
         className="bg-[#444] shadow-sm fixed top-0 left-0 w-full z-2">
         <div className="max-full mx-auto">
           <div className="flex justify-between md:justify-around h-16 md:h-20 w-full ">
-            <div className="flex items-center cursor-pointer">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() => navigate("/")}>
               <h2 className="text-[20px] md:text-3xl font-semibold text-white">
                 {name}
               </h2>
@@ -72,6 +78,7 @@ const Navbar = ({ name }) => {
                       className="text-[21px]"
                       onClick={(e) => {
                         handleLogout();
+                        console.log("logout");
                       }}>
                       <span>Logout</span>
                     </div>
@@ -84,12 +91,19 @@ const Navbar = ({ name }) => {
                     {cart?.length})
                   </NavLink>
                 )
-              ) : (
+              ) : user ? (
                 <i
                   className="ri-menu-fill text-2xl"
                   onClick={(e) => {
                     displayMenu();
                   }}></i>
+              ) : (
+                <NavLink
+                  to="/cartpage"
+                  className="text-white hover:text-blue-600">
+                  Cart <i className="ri-shopping-cart-line"></i> ({cart?.length}
+                  )
+                </NavLink>
               )}
             </div>
           </div>

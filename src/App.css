@@ -529,3 +529,64 @@ tbody td {
   padding: 2px 6px;
   border-radius: 8px;
 }
+
+/* --------------------------------------------- */
+
+#products-page {
+  margin: 100px 50px;
+}
+
+#select-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 20%;
+}
+
+.admin-products-container {
+  margin-top: 20px;
+  gap: unset;
+}
+
+@media (max-width: 768px) {
+  .products-container {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+
+  .categories-container {
+    padding-inline: 10px;
+  }
+
+  #nav {
+    padding-inline: 10px;
+  }
+
+  #dashboard-page {
+    margin: 20px;
+  }
+
+  #admin-categories-page {
+    margin: 20px;
+  }
+
+  #admin-orders-page {
+    margin: 20px;
+  }
+
+  #histories-page {
+    margin: 20px;
+  }
+
+  #products-page {
+    margin: 20px;
+  }
+  .auth-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  #select-input {
+    width: 100%;
+  }
+}

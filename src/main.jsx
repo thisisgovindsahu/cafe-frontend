@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar.jsx";
 import Categories from "./pages/Admin/Categories.jsx";
 import Orders from "./pages/Admin/Orders.jsx";
 import Histories from "./pages/Admin/Histories.jsx";
+import Products from "./pages/Admin/Products.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -27,6 +28,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/loginpage" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/categories" element={<Categories />} />
+          <Route path="/dashboard/products" element={<Products />} />
           <Route path="/dashboard/orders" element={<Orders />} />
           <Route path="/dashboard/orders-histories" element={<Histories />} />
         </Routes>
