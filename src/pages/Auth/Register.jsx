@@ -8,6 +8,8 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const navigate = useNavigate();
 
   const formRef = useRef();
@@ -28,7 +30,7 @@ const Register = () => {
     }
   };
 
-  return (
+  return user?.role === 2 ? (
     <>
       <Navbar name={"Logo name"} />
       <main id="user-auth">
@@ -103,6 +105,11 @@ const Register = () => {
         </div>
       </main>
     </>
+  ) : (
+    <div id="user-auth" className="not-authorized">
+      <h1>Not Authorized</h1>
+      <p>You do not have permission to access this page.</p>
+    </div>
   );
 };
 

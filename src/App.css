@@ -616,3 +616,46 @@ tbody td {
     width: 100%;
   }
 }
+
+/* ---------------------------------------------- */
+
+#users-page {
+  margin: 100px 50px;
+}
+
+.main-admin {
+  color: #fff;
+  background-color: rgb(7, 174, 74);
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.admin {
+  color: #fff;
+  background-color: rgb(0, 132, 255);
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.user {
+  color: #fff;
+  background-color: rgb(255, 162, 0);
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.user-delete {
+  color: #fff;
+  background-color: red;
+  padding: 2px 4px;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  #users-page {
+    margin-inline: 15px;
+  }
+}
+
+/* ---------------------------------------------- */

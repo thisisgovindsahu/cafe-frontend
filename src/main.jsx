@@ -15,6 +15,7 @@ import Categories from "./pages/Admin/Categories.jsx";
 import Orders from "./pages/Admin/Orders.jsx";
 import Histories from "./pages/Admin/Histories.jsx";
 import Products from "./pages/Admin/Products.jsx";
+import Users from "./pages/Admin/Users.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/dashboard/products" element={<Products />} />
           <Route path="/dashboard/orders" element={<Orders />} />
           <Route path="/dashboard/orders-histories" element={<Histories />} />
+          <Route path="/dashboard/users" element={<Users />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>
