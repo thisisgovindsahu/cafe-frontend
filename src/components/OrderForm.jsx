@@ -68,7 +68,7 @@ const OrderForm = ({ dispalyForm, setDisplayForm }) => {
       onClick={(e) => handleDisplayForm(e)}>
       <div
         id="form"
-        className="w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[50%]">
+        className="w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[50%]">
         <h2>Done Your Order</h2>
         <form action="">
           <div>

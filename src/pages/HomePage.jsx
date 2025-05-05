@@ -7,11 +7,12 @@ import OrderForm from "../components/OrderForm";
 
 const HomePage = () => {
   const [displayForm, setDisplayForm] = useState(false);
+  const [category, setCategory] = useState("");
   return (
     <>
       <header>
         <Navbar name={"Your Logo"} />
-        <CategoriesContainer />
+        <CategoriesContainer setCategory={setCategory} />
       </header>
       <main>
         <ProductsContainer
@@ -19,6 +20,7 @@ const HomePage = () => {
           showAddButtons={true}
           addBtnClass={"add-to-cart-btn"}
           addBtnContent={"Add"}
+          category={category}
         />
       </main>
       <footer>

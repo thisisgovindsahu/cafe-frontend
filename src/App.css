@@ -1,19 +1,26 @@
 .categories-container {
   overflow-x: scroll;
-  padding-inline: 20px;
   background-color: #333;
+  padding-inline: 20px;
+}
+
+.categories-container span {
+  margin-top: 10px;
 }
 
 .categories-container::-webkit-scrollbar {
   width: 0;
 }
 
-#nav {
-  padding-inline: 20px;
-}
-
 .active {
   text-decoration: underline;
+}
+
+.active-category {
+  background-color: #fbff22;
+  color: #000;
+  padding: 2px 8px;
+  border-radius: 5px;
 }
 
 /* ---------------------------------------------- */
@@ -21,7 +28,7 @@
 .products-container {
   margin-block: 180px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
   gap: 15px;
   margin-inline: 20px;
   background-color: #292828;
@@ -575,48 +582,6 @@ tbody td {
   padding-top: 10px;
 }
 
-@media (max-width: 768px) {
-  .products-container {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-  }
-
-  .categories-container {
-    padding-inline: 10px;
-  }
-
-  #nav {
-    padding-inline: 10px;
-  }
-
-  #dashboard-page {
-    margin: 20px;
-  }
-
-  #admin-categories-page {
-    margin: 20px;
-  }
-
-  #admin-orders-page {
-    margin: 20px;
-  }
-
-  #histories-page {
-    margin: 20px;
-  }
-
-  #products-page {
-    margin: 20px;
-  }
-  .auth-container {
-    width: 90%;
-    padding: 20px;
-  }
-
-  #select-input {
-    width: 100%;
-  }
-}
-
 /* ---------------------------------------------- */
 
 #users-page {
@@ -653,9 +618,25 @@ tbody td {
 }
 
 @media (max-width: 768px) {
+  .products-container {
+    grid-template-columns: repeat(2, minmax(0em, 1fr));
+  }
   #users-page {
     margin-inline: 15px;
   }
+  .nav-wrapper {
+    padding-inline: 20px;
+  }
+  .order-form input {
+    width: 100%;
+  }
+  .order-form form {
+    padding: 15px;
+  }
+}
+
+#cart-page {
+  margin: 100px 20px;
 }
 
 /* ---------------------------------------------- */

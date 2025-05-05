@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-const CategoriesContainer = () => {
+const CategoriesContainer = ({ setCategory }) => {
   const [categories, setCategories] = useLocalStorage("categories", []);
+  const categoriesRef = React.useRef(null);
 
   const fetchCategories = async () => {
     try {
@@ -26,13 +27,36 @@ const CategoriesContainer = () => {
     fetchCategories();
   }, []);
 
+  const activeCategory = (e) => {
+    const categories = categoriesRef.current.querySelectorAll(".category");
+    categories.forEach((category) => {
+      category.classList.remove("active-category");
+    });
+    e.target.classList.add("active-category");
+  };
+
   return categories?.length === 0 ? (
     <h1>No categories found.</h1>
   ) : (
-    <div className="categories-container w-full flex items-center gap-[50px] fixed top-16 md:top-20 h-20 left-0 ">
-      <span>All</span>
+    <div
+      ref={categoriesRef}
+      className="categories-container w-full flex items-center gap-[50px] fixed top-16 h-15 lg:h-20 left-0 ">
+      <span
+        className="active-category category"
+        onClick={(e) => {
+          setCategory("");
+          activeCategory(e);
+        }}>
+        All
+      </span>
       {categories?.map((c) => (
-        <span key={c.id} className="category text-nowrap">
+        <span
+          key={c.id}
+          className="category text-nowrap"
+          onClick={(e) => {
+            setCategory(c.name);
+            activeCategory(e);
+          }}>
           {c.name}
         </span>
       ))}

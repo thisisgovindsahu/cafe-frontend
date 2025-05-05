@@ -49,8 +49,8 @@ const Navbar = ({ name }) => {
       <nav
         id="nav"
         className="bg-[#444] shadow-sm fixed top-0 left-0 w-full z-2">
-        <div className="max-full mx-auto">
-          <div className="flex justify-between md:justify-around h-16 md:h-20 w-full ">
+        <div className="nav-wrapper">
+          <div className="flex justify-between md:justify-around h-16 xl:h-20 w-full ">
             <div
               className="flex items-center cursor-pointer"
               onClick={() => navigate("/")}>
@@ -127,6 +127,9 @@ const Navbar = ({ name }) => {
         </div>
         <div
           id="menu-logout-btn"
+          onClick={(e) => {
+            handleLogout();
+          }}
           className="text-[20px] bg-[yellow] text-black rounded-2xl">
           <span>Logout</span>
         </div>
