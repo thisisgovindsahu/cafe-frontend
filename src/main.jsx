@@ -21,7 +21,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <CartProvider>
       <BrowserRouter>
-        <Navbar name={"Your Logo"} />
+        <Navbar name={"Cafeteria"} />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/cartpage" element={<CartPage />} />

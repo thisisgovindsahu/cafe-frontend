@@ -704,7 +704,8 @@ tbody td {
 }
 
 .receipt-box {
-  background-color: #86828241;
+  background-color: #e7e7e752;
+  backdrop-filter: blur(15px);
   padding: 20px;
   margin-top: 20px;
   width: 100%;

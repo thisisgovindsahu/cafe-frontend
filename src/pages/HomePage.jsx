@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <>
       <header>
-        <Navbar name={"Your Logo"} />
+        <Navbar name={"Cafeteria"} />
         <CategoriesContainer setCategory={setCategory} />
       </header>
       <main>

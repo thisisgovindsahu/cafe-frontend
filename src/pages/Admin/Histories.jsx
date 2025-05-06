@@ -83,8 +83,12 @@ const Histories = () => {
                 <h2>Customer details</h2>
                 <br />
                 <div className="order-card-body">
-                  <p>Customer name: {parsedHistory?.buyer}</p>
-                  <p>Customer table no: {parsedHistory?.tableNumber}</p>
+                  <p onClick={() => setName(parsedHistory?.buyer)}>
+                    Customer name: {parsedHistory?.buyer}
+                  </p>
+                  <p onClick={() => setTableNumber(parsedHistory?.tableNumber)}>
+                    Customer table no: {parsedHistory?.tableNumber}
+                  </p>
                 </div>
                 <br />
                 <h2>Ordered items</h2>

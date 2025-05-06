@@ -134,7 +134,7 @@ const Navbar = ({ name }) => {
             handleLogout();
           }}
           className="text-[20px] bg-[yellow] text-black rounded-2xl">
-          <span>Logout</span>
+          <button onClick={() => handleLogout()}>Logout</button>
         </div>
       </div>
     </>

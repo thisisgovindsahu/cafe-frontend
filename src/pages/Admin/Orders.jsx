@@ -82,9 +82,13 @@ const Orders = () => {
               <div className="order-card relative" key={order.id}>
                 <h2>Customer details</h2>
                 <div className="order-card-body">
-                  <p>Customer name: {order.buyer}</p>
-                  <p>Customer table no: {order.tableNumber}</p>
-                </div>{" "}
+                  <p onClick={() => setName(order.buyer)}>
+                    Customer name: {order.buyer}
+                  </p>
+                  <p onClick={() => setTableNumber(order.tableNumber)}>
+                    Customer table no: {order.tableNumber}
+                  </p>
+                </div>
                 <br />
                 <h2>Ordered items</h2> <br />
                 <div className="order-card-footer">
