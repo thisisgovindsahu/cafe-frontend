@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import axios from "axios";
 import { useCart } from "../contexts/Cart";
+import toast from "react-hot-toast";
 
 const ProductsContainer = ({
   showDetails,
@@ -104,6 +105,7 @@ const ProductsContainer = ({
                       <button
                         onClick={(e) => {
                           handleAddCart(p, e);
+                          toast.success("Added to cart!");
                         }}
                         className={addBtnClass}>
                         {addBtnContent}
@@ -122,6 +124,7 @@ const ProductsContainer = ({
                         <button
                           onClick={(e) => {
                             handleAddCart(p, e);
+                            toast.success("Added to cart!");
                           }}
                           className={addBtnClass}>
                           {addBtnContent}
@@ -138,6 +141,7 @@ const ProductsContainer = ({
                         <button
                           onClick={(e) => {
                             handleAddCart(p, e);
+                            toast.success("Added to cart!");
                           }}
                           className={addBtnClass}>
                           {addBtnContent}

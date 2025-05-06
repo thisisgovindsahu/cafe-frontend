@@ -5,6 +5,7 @@ import ProductsContainer from "../components/ProductsContainer";
 import ProceedContainer from "../components/ProceedContainer";
 import OrderForm from "../components/OrderForm";
 import AppLayer from "../components/AppLayer";
+import { Toaster } from "react-hot-toast";
 
 const HomePage = () => {
   const [displayForm, setDisplayForm] = useState(false);
@@ -28,6 +29,7 @@ const HomePage = () => {
         <ProceedContainer setDisplayForm={setDisplayForm} />
       </footer>
       <OrderForm dispalyForm={displayForm} setDisplayForm={setDisplayForm} />
+      <Toaster />
     </>
   );
 };
