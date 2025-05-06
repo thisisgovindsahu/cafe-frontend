@@ -121,13 +121,20 @@ const Navbar = ({ name }) => {
           Back
         </div>
         <div className="menu-links flex flex-col gap-10 text-[18px]">
-          <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={"/dashboard"}>Dashboard</NavLink>
-          <NavLink to={"/cartpage"}>Cart</NavLink>
+          <NavLink onClick={() => hideMenu()} to={"/"}>
+            Home
+          </NavLink>
+          <NavLink onClick={() => hideMenu()} to={"/dashboard"}>
+            Dashboard
+          </NavLink>
+          <NavLink onClick={() => hideMenu()} to={"/cartpage"}>
+            Cart
+          </NavLink>
         </div>
         <div
           id="menu-logout-btn"
           onClick={(e) => {
+            hideMenu();
             handleLogout();
           }}
           className="text-[20px] bg-[yellow] text-black rounded-2xl">

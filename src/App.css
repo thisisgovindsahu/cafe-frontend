@@ -553,7 +553,7 @@ tbody td {
 
 .admin-products-container {
   margin-top: 20px;
-  gap: unset;
+  gap: 15px;
 }
 
 .product-actions {
@@ -619,9 +619,22 @@ tbody td {
 
 @media (max-width: 768px) {
   .products-container {
-    grid-template-columns: repeat(2, minmax(0em, 1fr));
+    grid-template-columns: repeat(3, minmax(0em, 1fr));
   }
   #users-page {
+    margin-inline: 15px;
+  }
+  #products-page {
+    margin-inline: 14px;
+  }
+  #products-page select {
+    width: 50%;
+  }
+  .admin-products-container {
+    margin-inline: 0px;
+    gap: 10px;
+  }
+  #admin-categories-page {
     margin-inline: 15px;
   }
   .nav-wrapper {
@@ -632,6 +645,12 @@ tbody td {
   }
   .order-form form {
     padding: 15px;
+  }
+}
+
+@media (max-width: 570px) {
+  .products-container {
+    grid-template-columns: repeat(2, minmax(0em, 1fr));
   }
 }
 

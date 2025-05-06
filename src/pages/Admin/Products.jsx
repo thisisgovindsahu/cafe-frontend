@@ -320,7 +320,6 @@ const Products = () => {
                     p.image
                   }`}
                   alt="Product"
-                  className="w-[200px] object-cover"
                 />
               </div>
               <div className="product-info">
