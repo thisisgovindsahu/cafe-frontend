@@ -637,6 +637,12 @@ tbody td {
   #admin-categories-page {
     margin-inline: 15px;
   }
+  #admin-orders-page {
+    margin-inline: 20px;
+  }
+  #histories-page {
+    margin-inline: 20px;
+  }
   .nav-wrapper {
     padding-inline: 20px;
   }
@@ -659,3 +665,17 @@ tbody td {
 }
 
 /* ---------------------------------------------- */
+
+.filtered-orders input {
+  padding: 5px 8px;
+}
+
+.receipt-box {
+  background-color: #86828241;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
