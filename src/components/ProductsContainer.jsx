@@ -79,7 +79,7 @@ const ProductsContainer = ({
   };
 
   return products?.length === 0 ? (
-    <h1>No products found.</h1>
+    <h1 className="">No products found.</h1>
   ) : (
     <div className="products-container">
       {products

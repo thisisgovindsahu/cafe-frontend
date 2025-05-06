@@ -14,9 +14,9 @@ const App = () => {
     });
   }
   return (
-    <>
+    <div id="app">
       <HomePage />
-    </>
+    </div>
   );
 };
 

@@ -64,7 +64,9 @@ const OrderForm = ({ dispalyForm, setDisplayForm }) => {
 
   return (
     <div
-      className={`order-form h-full w-full ${dispalyForm ? "flex" : "hidden"}`}
+      className={`z-3 order-form h-full w-full ${
+        dispalyForm ? "flex" : "hidden"
+      }`}
       onClick={(e) => handleDisplayForm(e)}>
       <div
         id="form"
@@ -96,6 +98,7 @@ const OrderForm = ({ dispalyForm, setDisplayForm }) => {
             </span>
             <br />
             <input
+              max={2}
               type="number"
               id="table-number"
               placeholder="Enter your Table No."

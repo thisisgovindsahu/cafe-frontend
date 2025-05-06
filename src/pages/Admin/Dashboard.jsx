@@ -1,17 +1,20 @@
 import React from "react";
 import { dashboardPages } from "../../constants";
 import { Link } from "react-router-dom";
+import AppLayer from "../../components/AppLayer";
 
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   return !user ? (
-    <h1 id="dashboard-page" className="text-2xl">
-      You are not authorized to visit this page!
-    </h1>
+    <>
+      <h1 id="dashboard-page" className="text-2xl">
+        You are not authorized to visit this page!
+      </h1>
+    </>
   ) : (
     <div id="dashboard-page">
-      <div className="dashboard">
+      <div className="dashboard z-2">
         <h1 className="text-3xl">Admin Panel</h1>
         <main className="main-content">
           <h1>
@@ -19,11 +22,14 @@ const Dashboard = () => {
           </h1>
           <ul className="dashboard-links">
             {dashboardPages?.map((page, i) => (
-              <Link key={i} to={page.path}>{page.name}</Link>
+              <Link key={i} to={page.path}>
+                {page.name}
+              </Link>
             ))}
           </ul>
         </main>
       </div>
+      {/* <AppLayer /> */}
     </div>
   );
 };

@@ -1,6 +1,12 @@
+#nav {
+  background-color: #fffefe79;
+  backdrop-filter: blur(10px);
+}
+
 .categories-container {
   overflow-x: scroll;
-  background-color: #333;
+  background-color: #fffefe79;
+  backdrop-filter: blur(4px);
   padding-inline: 20px;
 }
 
@@ -26,28 +32,33 @@
 /* ---------------------------------------------- */
 
 .products-container {
-  margin-block: 150px;
+  margin-top: 150px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
   gap: 12px;
   margin-inline: 10px;
-  background-color: #292828;
+  background-color: #f4f4f461;
+  backdrop-filter: blur(4px);
   padding: 12px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding-bottom: 80px;
 }
 
 .product {
   width: fit-content;
   display: flex;
   flex-direction: column;
-  background-color: #6666;
+  background-color: #fbf5fc10;
+  backdrop-filter: blur(2px);
   border-radius: 7px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .product-info {
-  background-color: #393838;
+  background-color: #fdeeff0a;
+  backdrop-filter: blur(2px);
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -57,7 +68,7 @@
 .product-name {
   font-size: 1.2em;
   font-weight: bold;
-  color: #fff;
+  color: #000;
   margin-block: 10px;
 }
 
@@ -98,6 +109,11 @@
   border: none;
 }
 
+.proceed-container {
+  background: #ffffe654;
+  backdrop-filter: blur(4px);
+}
+
 /* ----------------------------------------------------- */
 
 .cart-header {
@@ -136,16 +152,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #1111117f;
+  background-color: #efefef7f;
   backdrop-filter: blur(10px);
   /* display: none; */
   align-items: center;
   justify-content: center;
 }
 
-.order-form form,
 .order-form #form {
-  background-color: #353333;
+  background-color: #fffde7b8;
   /* height: 60%; */
   border-radius: 10px;
 }
@@ -162,7 +177,7 @@
 }
 
 .order-form input {
-  background-color: #232222;
+  background-color: #fffae26e;
   font-size: 20px;
   padding-block: 2px;
   padding-inline: 10px;
@@ -283,7 +298,7 @@
 
 .auth-container #bottom-link {
   text-decoration: none;
-  color: #fff;
+  color: #000000;
   display: inline-block;
   margin-block: 15px;
 }
@@ -306,7 +321,8 @@
   position: fixed;
   top: 0;
   right: 0;
-  background-color: #222;
+  background-color: #ffffff83;
+  backdrop-filter: blur(12px);
   height: 100%;
   width: 90%;
   z-index: 2;
@@ -315,7 +331,7 @@
 }
 
 .back-btn {
-  background-color: #3b3737;
+  background-color: #3b373751;
   padding: 5px 10px;
   border-radius: 15px;
 }
@@ -343,13 +359,13 @@
 
 .dashboard-links a {
   text-decoration: none;
-  color: #fff;
+  color: #000;
   font-size: 1rem;
   display: block;
   padding: 10px 15px;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease;
-  background-color: #2c2a2a;
+  background-color: #fffefe8f;
   font-weight: 600;
 }
 
@@ -361,7 +377,7 @@
 
 .main-content {
   padding: clamp(20px, 5vw, 25px);
-  background-color: #1f1e1e46;
+  background-color: #86868646;
   backdrop-filter: blur(10px);
   display: inline-block;
   margin: 40px;
@@ -391,13 +407,13 @@ form input {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #24232337;
+  background-color: #9d9d9d37;
   backdrop-filter: blur(20px);
-  color: #ffff;
+  color: #000000;
 }
 
 form input::placeholder {
-  color: #ffffff56;
+  color: #0000006e;
 }
 
 form button {
@@ -420,6 +436,8 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  background-color: #fff5ed6d;
+  backdrop-filter: blur(10px);
 }
 
 thead {
@@ -478,8 +496,8 @@ tbody td {
 .order-card {
   width: 400px;
   min-height: 200px;
-  background-color: #1e1e1e41;
-  backdrop-filter: blur(15px);
+  background-color: #e8e8e86b;
+  backdrop-filter: blur(6px);
   padding: 20px;
   border-radius: 10px;
 }
@@ -491,7 +509,7 @@ tbody td {
 }
 
 .order-card-body p {
-  background-color: #1a19194b;
+  background-color: #7d7d7d4b;
   padding: 10px;
   border-radius: 5px;
 }
@@ -503,7 +521,7 @@ tbody td {
 }
 
 .order-item {
-  background-color: #1a191958;
+  background-color: #84838358;
   padding: 10px;
   border-radius: 5px;
 }
@@ -531,8 +549,8 @@ tbody td {
   margin: 100px 50px;
 }
 
-#delete-btn {
-  background-color: red;
+.delete-btn {
+  background-color: rgba(255, 0, 0, 0.512);
   padding: 2px 6px;
   border-radius: 8px;
 }
@@ -541,6 +559,13 @@ tbody td {
 
 #products-page {
   margin: 100px 50px;
+}
+
+#products-page input,
+#products-page select {
+  background-color: #fffde691;
+  color: #000;
+  backdrop-filter: blur(4px);
 }
 
 #select-input {
@@ -557,7 +582,7 @@ tbody td {
 }
 
 .product-actions {
-  background-color: #1e1e1e41;
+  background-color: #f1efef41;
   padding-bottom: 20px;
 }
 
@@ -652,6 +677,13 @@ tbody td {
   .order-form form {
     padding: 15px;
   }
+  #dashboard-page {
+    margin-inline: 20px;
+  }
+  .main-content {
+    margin: 20px;
+    padding: 10px;
+  }
 }
 
 @media (max-width: 570px) {
@@ -668,6 +700,7 @@ tbody td {
 
 .filtered-orders input {
   padding: 5px 8px;
+  background-color: #fff8e7;
 }
 
 .receipt-box {
@@ -678,4 +711,33 @@ tbody td {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+
+/*-------------------------------------------------- */
+
+#user-auth > div {
+  background-color: #fdf8f05a;
+  backdrop-filter: blur(10px);
+  color: #000;
+}
+
+#user-auth h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+#user-auth label {
+  display: block;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+#user-auth input {
+  color: #000;
+  background-color: #fdf8f0b3;
+}
+
+#user-auth a {
+  color: #000;
 }

@@ -67,7 +67,7 @@ const Login = () => {
         </form>
         {localStorage.getItem("user") ? (
           JSON.parse(localStorage.getItem("user"))?.role === 2 ? (
-            <Link id="bottom-link" to="/registerpage">
+            <Link id="bottom-link" to="/registerpage" className="">
               Don't have an account? <span>Register account.</span>
             </Link>
           ) : (

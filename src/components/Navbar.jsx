@@ -46,17 +46,13 @@ const Navbar = ({ name }) => {
 
   return (
     <>
-      <nav
-        id="nav"
-        className="bg-[#444] shadow-sm fixed top-0 left-0 w-full z-2">
+      <nav id="nav" className="shadow-sm fixed top-0 left-0 w-full z-2">
         <div className="nav-wrapper">
           <div className="flex justify-between md:justify-around h-16 xl:h-20 w-full ">
             <div
               className="flex items-center cursor-pointer"
               onClick={() => navigate("/")}>
-              <h2 className="text-[20px] md:text-3xl font-semibold text-white">
-                {name}
-              </h2>
+              <h2 className="text-[20px] md:text-3xl font-semibold">{name}</h2>
             </div>
             <div className="flex items-center space-x-8 text-[18px] md:text-3xl">
               {window.innerWidth >= 700 ? (

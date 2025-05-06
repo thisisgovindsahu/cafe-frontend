@@ -4,6 +4,7 @@ import CategoriesContainer from "../components/CategoriesContainer";
 import ProductsContainer from "../components/ProductsContainer";
 import ProceedContainer from "../components/ProceedContainer";
 import OrderForm from "../components/OrderForm";
+import AppLayer from "../components/AppLayer";
 
 const HomePage = () => {
   const [displayForm, setDisplayForm] = useState(false);
