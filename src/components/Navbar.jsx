@@ -41,6 +41,8 @@ const Navbar = ({ name }) => {
       }
     } catch (error) {
       console.log(error);
+      navigate("/loginpage");
+      localStorage.removeItem("user");
     }
   };
 
@@ -74,7 +76,6 @@ const Navbar = ({ name }) => {
                       className="text-[21px]"
                       onClick={(e) => {
                         handleLogout();
-                        console.log("logout");
                       }}>
                       <span>Logout</span>
                     </div>
@@ -96,7 +97,7 @@ const Navbar = ({ name }) => {
               ) : (
                 <NavLink
                   to="/cartpage"
-                  className="text-white hover:text-blue-600">
+                  className="text-black hover:text-blue-600">
                   Cart <i className="ri-shopping-cart-line"></i> ({cart?.length}
                   )
                 </NavLink>
@@ -109,13 +110,13 @@ const Navbar = ({ name }) => {
         ref={menuRef}
         id="side-menu"
         className="flex flex-col items-end gap-10">
-        <div
+        <button
           className="back-btn"
           onClick={(e) => {
             hideMenu();
           }}>
           Back
-        </div>
+        </button>
         <div className="menu-links flex flex-col gap-10 text-[18px]">
           <NavLink onClick={() => hideMenu()} to={"/"}>
             Home

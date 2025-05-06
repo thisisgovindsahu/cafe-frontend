@@ -62,7 +62,6 @@ const Histories = () => {
       const parsedHistory = JSON.parse(history.history);
       total += parseFloat(parsedHistory.total);
     });
-    console.log(total);
     return total;
   };
 
