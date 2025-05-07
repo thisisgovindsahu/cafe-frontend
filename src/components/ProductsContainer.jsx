@@ -26,8 +26,10 @@ const ProductsContainer = ({
       );
       if (data?.success) {
         setProducts(data?.data);
+      } else if (data?.message === "No products found.") {
+        setProducts([]);
       } else {
-        console.log("Server Problem");
+        console.log("Something went wrong while fetching products.");
       }
     } catch (error) {
       console.error("Error fetching products:", error);

@@ -15,6 +15,8 @@ const CategoriesContainer = ({ setCategory }) => {
       );
       if (data?.success) {
         setCategories(data?.data);
+      } else if (data?.success === false) {
+        setCategories([]);
       } else {
         console.log("Server Problem");
       }

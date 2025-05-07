@@ -21,6 +21,8 @@ const Products = () => {
 
   const [updateMode, setUpdateMode] = useState(false);
 
+  const [loader, setLoader] = useState(false);
+
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("products") || "[]")
   );
@@ -34,6 +36,8 @@ const Products = () => {
       );
       if (data?.success) {
         setProducts(data.data);
+      } else if (data?.message === "No products found.") {
+        setProducts([]);
       }
     } catch (error) {
       console.log(error);
@@ -62,6 +66,7 @@ const Products = () => {
       return;
     }
     try {
+      setLoader(true);
       const { data } = await axios.post(
         `${
           import.meta.env.VITE_API_URI
@@ -84,6 +89,9 @@ const Products = () => {
         setImagePreview(null);
         formRef.current.reset();
         fetchProducts();
+        setLoader(false);
+      } else {
+        console.log("Something problem while creating product.");
       }
     } catch (error) {
       console.error(error);
@@ -115,6 +123,7 @@ const Products = () => {
       return;
     }
     try {
+      setLoader(true);
       const { data } = await axios.post(
         `${
           import.meta.env.VITE_API_URI
@@ -136,6 +145,9 @@ const Products = () => {
         setHalfPrice("");
         setFullPrice("");
         setImage("");
+        setProductId("");
+        setUpdateMode(false);
+        setLoader(false);
         setImagePreview(null);
         formRef.current.reset();
         fetchProducts();
@@ -305,17 +317,21 @@ const Products = () => {
                     }}
                   />
                 </div>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    updateMode
-                      ? handleUpdateRequest(productId)
-                      : handleSubmit(e);
-                    setUpdateMode(false);
-                  }}
-                  className="w-[50%] lg:w-[20%] ">
-                  {updateMode ? "Update" : "Add"} Product
-                </button>
+                {loader ? (
+                  <span className="loader"></span>
+                ) : (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      updateMode
+                        ? handleUpdateRequest(productId)
+                        : handleSubmit(e);
+                      setUpdateMode(false);
+                    }}
+                    className="w-[50%] lg:w-[20%] ">
+                    {updateMode ? "Update" : "Add"} Product
+                  </button>
+                )}
               </form>
             </div>
             <div className="products-container admin-products-container">
@@ -345,23 +361,31 @@ const Products = () => {
                       </p>
                     </div>
                     <div className="product-actions flex gap-5 justify-center items-center">
-                      <button
-                        className="bg-red-500 text-white px-4 py-2 rounded"
-                        onClick={() => handleDeleteProduct(p.id)}>
-                        Delete
-                      </button>
-                      <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded"
-                        onClick={(e) => {
-                          handleUpdateProduct(p);
+                      {loader ? (
+                        <span className="loader"></span>
+                      ) : (
+                        <button
+                          className="bg-red-500 text-white px-4 py-2 rounded"
+                          onClick={() => handleDeleteProduct(p.id)}>
+                          Delete
+                        </button>
+                      )}
+                      {loader ? (
+                        <span className="loader"></span>
+                      ) : (
+                        <button
+                          className="bg-blue-500 text-white px-4 py-2 rounded"
+                          onClick={(e) => {
+                            handleUpdateProduct(p);
 
-                          window.scrollTo({
-                            top: 0,
-                            behavior: "smooth",
-                          });
-                        }}>
-                        Update
-                      </button>
+                            window.scrollTo({
+                              top: 0,
+                              behavior: "smooth",
+                            });
+                          }}>
+                          Update
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))

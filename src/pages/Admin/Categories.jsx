@@ -87,6 +87,7 @@ const Categories = () => {
         setLoading(true);
         setUpdateName("");
         setCategoryId("");
+        setSwitchForm(true);
         fetchCategories();
       }
     } catch (error) {
@@ -179,6 +180,10 @@ const Categories = () => {
                           setSwitchForm(false);
                           setUpdateName(category.name);
                           setCategoryId(category.id);
+                          window.scrollTo({
+                            top: 0,
+                            behavior: "smooth",
+                          });
                         }}>
                         Update
                       </button>
