@@ -162,205 +162,224 @@ const Products = () => {
 
   return (
     <div id="products-page">
-      <div className="form-container">
-        <form ref={formRef} id="add-product-form" className="flex flex-col">
-          <h1 className="text-[30px] font-bold">
-            {updateMode ? "Update" : "Add"} Product
-          </h1>
-          <div className="input-container flex flex-col gap-2">
-            <label htmlFor="product-name">Product Name</label>
-            <input
-              required
-              value={productName}
-              type="text"
-              name="name"
-              id="product-name"
-              placeholder="Product Name"
-              onChange={(e) => setProductName(e.target.value)}
-            />
-          </div>
-          <div className="input-container flex flex-col gap-2">
-            <label>Select Category</label>
-            <span
-              ref={validateCategoryRef}
-              className="text-[red]"
-              style={{ display: "none" }}>
-              category name required
-            </span>
-            <select
-              required
-              name="category"
-              id="select-input"
-              value={category}
-              onChange={(e) => {
-                setCategory(e.target.value);
-                validateCategoryRef.current.style.display = "none";
-              }}
-              className="bg-[#222] text-white outline">
-              <option hidden value="">
-                Select Category
-              </option>
-              {categories?.map((category) => (
-                <option key={category.id} value={category.name}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="input-container flex flex-col gap-2">
-            <label>Price Type</label>
-            <select
-              required
-              value={priceType}
-              name="price_type"
-              id="select-input"
-              onChange={(e) => setPriceType(e.target.value)}
-              className="bg-[#222] text-white outline">
-              <option value="single">single</option>
-              <option value="both">both</option>
-            </select>
-          </div>
-          <div className="input-container flex flex-col gap-2">
-            {priceType === "single" ? (
-              <>
-                <label htmlFor="product-price">Product Price</label>
-                <input
-                  required
-                  name="full_price"
-                  value={price}
-                  type="number"
-                  id="product-price"
-                  placeholder="Product Price"
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </>
-            ) : (
-              <>
-                <label htmlFor="product-price">Half Price</label>
-                <input
-                  required
-                  name="half_price"
-                  value={halfPrice}
-                  type="number"
-                  id="product-price"
-                  placeholder="Half Price"
-                  onChange={(e) => setHalfPrice(e.target.value)}
-                />
-                <label htmlFor="product-price">Full Price</label>
-                <input
-                  required
-                  name="full_price"
-                  value={fullPrice}
-                  type="number"
-                  id="product-price"
-                  placeholder="Full Price"
-                  onChange={(e) => setFullPrice(e.target.value)}
-                />
-              </>
-            )}
-          </div>
-          <div className="input-container flex flex-col gap-2">
-            <div
-              className="input-container flex flex-col gap-2"
-              style={{ display: updateMode ? "none" : "flex" }}>
-              <label htmlFor="product-image">Product Image</label>
-              <input
-                required
-                ref={refImage}
-                name="image"
-                type="file"
-                id="product-image"
-                value={image}
-                accept=".jpg, .png, .jpeg"
-                onChange={(e) => {
-                  setImage(e.target.value);
-                  handleImagePreview(e);
-                }}
-              />
-            </div>
-            <span
-              style={{
-                display: updateMode ? "block" : "none",
-              }}
-              className="upt-img"
-              onClick={(e) => {
-                refImage.current.click();
-              }}>
-              Change Image
-            </span>
-
-            <img
-              ref={imageRef}
-              src={imagePreview}
-              alt="Product Preview"
-              className="w-[200px] object-cover"
-              style={{
-                display: imagePreview ? "block" : "none",
-              }}
-            />
-          </div>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              updateMode ? handleUpdateRequest(productId) : handleSubmit(e);
-              setUpdateMode(false);
-            }}
-            className="w-[50%] lg:w-[20%] ">
-            {updateMode ? "Update" : "Add"} Product
-          </button>
-        </form>
-      </div>
-      <div className="products-container admin-products-container">
-        {products?.length ? (
-          products.map((p) => (
-            <div key={p.id} className="product">
-              <div className="product-image">
-                <img
-                  src={`${import.meta.env.VITE_API_URI}/uploaded_files/${
-                    p.image
-                  }`}
-                  alt="Product"
-                />
-              </div>
-              <div className="product-info">
-                <h2 className="text-[20px] font-bold">{p.name}</h2>
-                <p className="text-[18px] font-bold">{p.category}</p>
-                <p className="text-[16px] font-bold">
-                  {p.price_type === "single" ? (
-                    <span>Price: {p.full_price} </span>
+      {user ? (
+        user?.role === 2 ? (
+          <>
+            <div className="form-container">
+              <form
+                ref={formRef}
+                id="add-product-form"
+                className="flex flex-col">
+                <h1 className="text-[30px] font-bold">
+                  {updateMode ? "Update" : "Add"} Product
+                </h1>
+                <div className="input-container flex flex-col gap-2">
+                  <label htmlFor="product-name">Product Name</label>
+                  <input
+                    required
+                    value={productName}
+                    type="text"
+                    name="name"
+                    id="product-name"
+                    placeholder="Product Name"
+                    onChange={(e) => setProductName(e.target.value)}
+                  />
+                </div>
+                <div className="input-container flex flex-col gap-2">
+                  <label>Select Category</label>
+                  <span
+                    ref={validateCategoryRef}
+                    className="text-[red]"
+                    style={{ display: "none" }}>
+                    category name required
+                  </span>
+                  <select
+                    required
+                    name="category"
+                    id="select-input"
+                    value={category}
+                    onChange={(e) => {
+                      setCategory(e.target.value);
+                      validateCategoryRef.current.style.display = "none";
+                    }}
+                    className="bg-[#222] text-white outline">
+                    <option hidden value="">
+                      Select Category
+                    </option>
+                    {categories?.map((category) => (
+                      <option key={category.id} value={category.name}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="input-container flex flex-col gap-2">
+                  <label>Price Type</label>
+                  <select
+                    required
+                    value={priceType}
+                    name="price_type"
+                    id="select-input"
+                    onChange={(e) => setPriceType(e.target.value)}
+                    className="bg-[#222] text-white outline">
+                    <option value="single">single</option>
+                    <option value="both">both</option>
+                  </select>
+                </div>
+                <div className="input-container flex flex-col gap-2">
+                  {priceType === "single" ? (
+                    <>
+                      <label htmlFor="product-price">Product Price</label>
+                      <input
+                        required
+                        name="full_price"
+                        value={price}
+                        type="number"
+                        id="product-price"
+                        placeholder="Product Price"
+                        onChange={(e) => setPrice(e.target.value)}
+                      />
+                    </>
                   ) : (
-                    <span>
-                      Half Price: {p.half_price} <br /> Full Price:{" "}
-                      {p.full_price}
-                    </span>
+                    <>
+                      <label htmlFor="product-price">Half Price</label>
+                      <input
+                        required
+                        name="half_price"
+                        value={halfPrice}
+                        type="number"
+                        id="product-price"
+                        placeholder="Half Price"
+                        onChange={(e) => setHalfPrice(e.target.value)}
+                      />
+                      <label htmlFor="product-price">Full Price</label>
+                      <input
+                        required
+                        name="full_price"
+                        value={fullPrice}
+                        type="number"
+                        id="product-price"
+                        placeholder="Full Price"
+                        onChange={(e) => setFullPrice(e.target.value)}
+                      />
+                    </>
                   )}
-                </p>
-              </div>
-              <div className="product-actions flex gap-5 justify-center items-center">
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                  onClick={() => handleDeleteProduct(p.id)}>
-                  Delete
-                </button>
-                <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                  onClick={(e) => {
-                    handleUpdateProduct(p);
+                </div>
+                <div className="input-container flex flex-col gap-2">
+                  <div
+                    className="input-container flex flex-col gap-2"
+                    style={{ display: updateMode ? "none" : "flex" }}>
+                    <label htmlFor="product-image">Product Image</label>
+                    <input
+                      required
+                      ref={refImage}
+                      name="image"
+                      type="file"
+                      id="product-image"
+                      value={image}
+                      accept=".jpg, .png, .jpeg"
+                      onChange={(e) => {
+                        setImage(e.target.value);
+                        handleImagePreview(e);
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      display: updateMode ? "block" : "none",
+                    }}
+                    className="upt-img"
+                    onClick={(e) => {
+                      refImage.current.click();
+                    }}>
+                    Change Image
+                  </span>
 
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth",
-                    });
-                  }}>
-                  Update
+                  <img
+                    ref={imageRef}
+                    src={imagePreview}
+                    alt="Product Preview"
+                    className="w-[200px] object-cover"
+                    style={{
+                      display: imagePreview ? "block" : "none",
+                    }}
+                  />
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    updateMode
+                      ? handleUpdateRequest(productId)
+                      : handleSubmit(e);
+                    setUpdateMode(false);
+                  }}
+                  className="w-[50%] lg:w-[20%] ">
+                  {updateMode ? "Update" : "Add"} Product
                 </button>
-              </div>
+              </form>
             </div>
-          ))
+            <div className="products-container admin-products-container">
+              {products?.length ? (
+                products.map((p) => (
+                  <div key={p.id} className="product">
+                    <div className="product-image">
+                      <img
+                        src={`${import.meta.env.VITE_API_URI}/uploaded_files/${
+                          p.image
+                        }`}
+                        alt="Product"
+                      />
+                    </div>
+                    <div className="product-info">
+                      <h2 className="text-[20px] font-bold">{p.name}</h2>
+                      <p className="text-[18px] font-bold">{p.category}</p>
+                      <p className="text-[16px] font-bold">
+                        {p.price_type === "single" ? (
+                          <span>Price: {p.full_price} </span>
+                        ) : (
+                          <span>
+                            Half Price: {p.half_price} <br /> Full Price:{" "}
+                            {p.full_price}
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                    <div className="product-actions flex gap-5 justify-center items-center">
+                      <button
+                        className="bg-red-500 text-white px-4 py-2 rounded"
+                        onClick={() => handleDeleteProduct(p.id)}>
+                        Delete
+                      </button>
+                      <button
+                        className="bg-blue-500 text-white px-4 py-2 rounded"
+                        onClick={(e) => {
+                          handleUpdateProduct(p);
+
+                          window.scrollTo({
+                            top: 0,
+                            behavior: "smooth",
+                          });
+                        }}>
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <h1>No Products</h1>
+              )}
+            </div>
+          </>
         ) : (
-          <h1>No Products</h1>
-        )}
-      </div>
+          <h1 className="text-[red] text-[30px] font-bold">
+            You are not authorized to access this page.
+          </h1>
+        )
+      ) : (
+        <h1 className="text-[red] text-[30px] font-bold">
+          You are not allowed to access this page.
+        </h1>
+      )}
     </div>
   );
 };

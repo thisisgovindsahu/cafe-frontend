@@ -40,7 +40,7 @@ const CategoriesContainer = ({ setCategory }) => {
   ) : (
     <div
       ref={categoriesRef}
-      className="categories-container w-full flex items-center gap-[50px] fixed top-16 h-15 lg:h-20 left-0 ">
+      className="categories-container w-full flex items-center gap-[50px] fixed top-16 h-15 lg:h-20 left-0 z-1 ">
       <span
         className="active-category category"
         onClick={(e) => {

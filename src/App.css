@@ -6,7 +6,7 @@
 .categories-container {
   overflow-x: scroll;
   background-color: #fffefe79;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
   padding-inline: 20px;
 }
 
