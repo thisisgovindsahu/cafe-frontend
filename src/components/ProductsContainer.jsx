@@ -117,17 +117,43 @@ const ProductsContainer = ({
     }
   };
 
+  // -------------------------------------------------------------//
+
   if (!localStorage.getItem("firstTime")) {
-    const driverObj = driver();
-    driverObj.highlight({
-      element: ".full-screen-icon",
-      popover: {
-        title: "App Mode",
-        description: "Switch to app mode for better experience.",
-      },
-    });
-    localStorage.setItem("firstTime", true);
+    // Add slight delay for mobile rendering
+    setTimeout(() => {
+      const driverObj = driver({
+        className: "driverjs-mobile-fix",
+        onNext: () => {
+          // Force reflow for mobile browsers
+          driverObj.refresh();
+        },
+        onDismiss: () => {
+          driverObj.reset();
+        },
+        scrollIntoViewOptions: {
+          behavior: "smooth",
+          block: "center",
+        },
+      });
+
+      // Mobile-specific configuration
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+      driverObj.highlight({
+        element: ".full-screen-icon",
+        popover: {
+          title: "App Mode",
+          description: "Switch to app mode for better experience.",
+          position: isMobile ? "top" : "left", // Better positioning for mobile
+        },
+      });
+
+      localStorage.setItem("firstTime", "true");
+    }, 1000); // 1-second delay for mobile rendering
   }
+
+  // -------------------------------------------------------------//
 
   return products?.length === 0 ? (
     <h1 className="">No products found.</h1>
