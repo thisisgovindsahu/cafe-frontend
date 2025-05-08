@@ -3,6 +3,24 @@
   backdrop-filter: blur(10px);
 }
 
+.full-screen-icon {
+  position: fixed;
+  top: 130px;
+  right: 20px;
+  background-color: #fffefe79;
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 50;
+  font-weight: 900;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .categories-container {
   overflow-x: scroll;
   background-color: #fffefe79;
