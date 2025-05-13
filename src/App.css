@@ -29,6 +29,7 @@
 }
 
 .categories-container span {
+  text-wrap: nowrap;
   margin-top: 10px;
 }
 
