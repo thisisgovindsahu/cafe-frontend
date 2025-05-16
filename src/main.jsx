@@ -19,8 +19,14 @@ import Histories from "./pages/Admin/Histories.jsx";
 import Products from "./pages/Admin/Products.jsx";
 import Users from "./pages/Admin/Users.jsx";
 
-// Initialize Lenis
-const lenis = new Lenis();
+// Initialize Lenis with mobile-friendly settings
+const lenis = new Lenis({
+  smooth: true, // Enable smooth scrolling
+  direction: "vertical", // Scroll direction
+  gestureDirection: "vertical", // Gesture direction for touch devices
+  smoothTouch: true, // Enable smooth scrolling on touch devices
+  touchMultiplier: 2, // Adjust scrolling speed on touch devices
+});
 
 function raf(time) {
   lenis.raf(time);

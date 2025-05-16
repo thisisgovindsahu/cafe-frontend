@@ -3,6 +3,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import axios from "axios";
 import { useCart } from "../contexts/Cart";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const OrderForm = ({ dispalyForm, setDisplayForm }) => {
   const [name, setName] = useState("");
@@ -56,9 +57,26 @@ const OrderForm = ({ dispalyForm, setDisplayForm }) => {
         setCart([]);
         localStorage.setItem("cart", JSON.stringify([]));
         navigate("/");
+        toast.success("Order Placed Successfully", {
+          duration: 2000,
+          position: "top-right",
+        });
+      } else {
+        setLoader(false);
+        setDisplayForm(false);
+        toast.error("Order Failed, Something is wrong.", {
+          duration: 2000,
+          position: "top-right",
+        });
       }
     } catch (error) {
       console.log(error);
+      setLoader(false);
+      setDisplayForm(false);
+      toast.error("Order Failed, Problem in server", {
+        duration: 2000,
+        position: "top-right",
+      });
     }
   };
 

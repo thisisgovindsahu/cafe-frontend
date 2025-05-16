@@ -30,6 +30,7 @@
 
 .categories-container span {
   text-wrap: nowrap;
+  white-space: nowrap;
   margin-top: 10px;
 }
 
