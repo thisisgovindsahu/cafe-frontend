@@ -124,17 +124,16 @@ const ProductsContainer = ({
     setTimeout(() => {
       const driverObj = driver({
         className: "driverjs-mobile-fix",
-        onNext: () => {
-          // Force reflow for mobile browsers
-          driverObj.refresh();
-        },
-        onDismiss: () => {
-          driverObj.reset();
-        },
         scrollIntoViewOptions: {
           behavior: "smooth",
           block: "center",
         },
+      });
+
+      const target = document.querySelector(".full-screen-icon");
+
+      target?.addEventListener("click", () => {
+        driverObj.destroy();
       });
 
       // Mobile-specific configuration
@@ -149,7 +148,7 @@ const ProductsContainer = ({
         },
       });
 
-      localStorage.setItem("firstTime", "true");
+      // localStorage.setItem("firstTime", "true");
     }, 1000); // 1-second delay for mobile rendering
   }
 
