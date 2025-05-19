@@ -81,9 +81,7 @@ const Navbar = ({ name }) => {
                     </div>
                   </div>
                 ) : (
-                  <NavLink
-                    to="/cartpage"
-                    className="text-white hover:text-blue-600">
+                  <NavLink to="/cartpage" className="link">
                     Cart <i className="ri-shopping-cart-line"></i> (
                     {cart?.length})
                   </NavLink>

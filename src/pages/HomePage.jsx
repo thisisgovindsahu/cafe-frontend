@@ -6,10 +6,14 @@ import ProceedContainer from "../components/ProceedContainer";
 import OrderForm from "../components/OrderForm";
 import AppLayer from "../components/AppLayer";
 import { Toaster } from "react-hot-toast";
+import InstallPop from "../components/InstallPop";
 
 const HomePage = () => {
   const [displayForm, setDisplayForm] = useState(false);
   const [category, setCategory] = useState("");
+
+  const [showPOPUp, setShowPOPUp] = useState(true);
+
   return (
     <>
       <header>
@@ -29,6 +33,7 @@ const HomePage = () => {
         <ProceedContainer setDisplayForm={setDisplayForm} />
       </footer>
       <OrderForm dispalyForm={displayForm} setDisplayForm={setDisplayForm} />
+      {showPOPUp && <InstallPop />}
       <Toaster />
     </>
   );

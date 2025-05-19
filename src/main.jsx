@@ -35,6 +35,14 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
+window.deferredPromptGlobal = null;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  window.deferredPromptGlobal = e;
+  window.dispatchEvent(new Event("pwa-install-available"));
+});
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <CartProvider>

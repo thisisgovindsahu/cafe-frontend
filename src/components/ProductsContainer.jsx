@@ -20,6 +20,7 @@ const ProductsContainer = ({
   const [cart, setCart] = useCart();
 
   const isStandAlone = usePWAStandalone();
+  
 
   const fetchProducts = async () => {
     try {

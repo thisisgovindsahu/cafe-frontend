@@ -61,6 +61,7 @@ const OrderForm = ({ dispalyForm, setDisplayForm }) => {
           duration: 2000,
           position: "top-right",
         });
+        localStorage.setItem("firstOrderPlaced", true);
       } else {
         setLoader(false);
         setDisplayForm(false);

@@ -11,24 +11,25 @@ const PWAInstallButton = () => {
     ).matches;
     setIsInstalled(isInstalledCheck);
 
-    // Capture install prompt event
-    const handleBeforeInstallPrompt = (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
+    // Listen for our custom event
+    const handleAvailable = () => {
+      setDeferredPrompt(window.deferredPromptGlobal);
     };
 
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    window.addEventListener("pwa-install-available", handleAvailable);
 
-    // Detect when app is installed
-    window.addEventListener("appinstalled", () => {
-      setIsInstalled(true);
-    });
+    // If the event fired before component mounted
+    if (window.deferredPromptGlobal) {
+      setDeferredPrompt(window.deferredPromptGlobal);
+    }
+
+    // Listen for appinstalled
+    const handleAppInstalled = () => setIsInstalled(true);
+    window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {
-      window.removeEventListener(
-        "beforeinstallprompt",
-        handleBeforeInstallPrompt
-      );
+      window.removeEventListener("pwa-install-available", handleAvailable);
+      window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
 
@@ -41,7 +42,9 @@ const PWAInstallButton = () => {
     if (outcome === "accepted") {
       console.log("User accepted install");
     }
+
     setDeferredPrompt(null);
+    window.deferredPromptGlobal = null;
   };
 
   if (isInstalled || !deferredPrompt) return null;
