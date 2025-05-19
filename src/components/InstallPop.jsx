@@ -1,6 +1,6 @@
 import PWAInstallButton from "./PWAInstallButton";
 
-const InstallPop = () => {
+const InstallPop = ({setShowPOPUp}) => {
   return (
     <div
       className="fixed inset-0 flex items-center justify-center z-[1000]"
@@ -15,7 +15,7 @@ const InstallPop = () => {
         <p className="mb-4">
           Get a better experience by installing our Progressive Web App.
         </p>
-        <PWAInstallButton />
+        <PWAInstallButton setShowPOPUp={setShowPOPUp} />
         <button
           style={{
             padding: "5px 15px",
@@ -25,9 +25,7 @@ const InstallPop = () => {
           className="mt-4 px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition"
           onClick={() => {
             // You can add logic here to close the popup if needed
-            if (typeof window !== "undefined" && window.dispatchEvent) {
-              window.dispatchEvent(new Event("closeInstallPop"));
-            }
+            setShowPOPUp(false);
           }}>
           No, thanks
         </button>

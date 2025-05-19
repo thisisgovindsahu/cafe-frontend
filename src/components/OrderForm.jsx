@@ -5,7 +5,7 @@ import { useCart } from "../contexts/Cart";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const OrderForm = ({ dispalyForm, setDisplayForm }) => {
+const OrderForm = ({ dispalyForm, setDisplayForm, setShowPOPUp }) => {
   const [name, setName] = useState("");
   const [tableNumber, setTableNumber] = useState("");
   const [showTableValidate, setShowTableValidate] = useState(false);
@@ -61,7 +61,10 @@ const OrderForm = ({ dispalyForm, setDisplayForm }) => {
           duration: 2000,
           position: "top-right",
         });
-        localStorage.setItem("firstOrderPlaced", true);
+        if (!localStorage.getItem("setShowPOPUp")) {
+          localStorage.setItem("setShowPOPUp", true);
+          setShowPOPUp(true);
+        }
       } else {
         setLoader(false);
         setDisplayForm(false);

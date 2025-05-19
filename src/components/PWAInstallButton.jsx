@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const PWAInstallButton = () => {
+const PWAInstallButton = ({ setShowPOPUp }) => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isInstalled, setIsInstalled] = useState(false);
 
@@ -45,6 +45,7 @@ const PWAInstallButton = () => {
 
     setDeferredPrompt(null);
     window.deferredPromptGlobal = null;
+    setShowPOPUp(false);
   };
 
   if (isInstalled || !deferredPrompt) return null;

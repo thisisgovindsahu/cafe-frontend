@@ -12,7 +12,7 @@ const HomePage = () => {
   const [displayForm, setDisplayForm] = useState(false);
   const [category, setCategory] = useState("");
 
-  const [showPOPUp, setShowPOPUp] = useState(true);
+  const [showPOPUp, setShowPOPUp] = useState(false);
 
   return (
     <>
@@ -32,8 +32,12 @@ const HomePage = () => {
       <footer>
         <ProceedContainer setDisplayForm={setDisplayForm} />
       </footer>
-      <OrderForm dispalyForm={displayForm} setDisplayForm={setDisplayForm} />
-      {showPOPUp && <InstallPop />}
+      <OrderForm
+        dispalyForm={displayForm}
+        setDisplayForm={setDisplayForm}
+        setShowPOPUp={setShowPOPUp}
+      />
+      {showPOPUp && <InstallPop setShowPOPUp={setShowPOPUp} />}
       <Toaster />
     </>
   );
