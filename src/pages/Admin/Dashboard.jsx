@@ -1,7 +1,7 @@
 import React from "react";
 import { dashboardPages } from "../../constants";
 import { Link } from "react-router-dom";
-import AppLayer from "../../components/AppLayer";
+import PWAInstallButton from "../../components/PWAInstallButton";
 
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -29,7 +29,7 @@ const Dashboard = () => {
           </ul>
         </main>
       </div>
-      {/* <AppLayer /> */}
+      <PWAInstallButton />
     </div>
   );
 };

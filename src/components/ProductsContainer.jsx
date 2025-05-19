@@ -148,7 +148,7 @@ const ProductsContainer = ({
         },
       });
 
-      // localStorage.setItem("firstTime", "true");
+      localStorage.setItem("firstTime", "true");
     }, 1000); // 1-second delay for mobile rendering
   }
 

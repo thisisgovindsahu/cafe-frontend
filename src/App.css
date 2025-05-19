@@ -762,3 +762,25 @@ tbody td {
 #user-auth a {
   color: #000;
 }
+
+.pwa-install-button {
+  background-color: #00c853;
+  color: #fff;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pwa-install-button:hover {
+  background-color: #009624;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
