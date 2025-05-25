@@ -51,6 +51,7 @@ const OrderForm = ({ dispalyForm, setDisplayForm, setShowPOPUp }) => {
         `${import.meta.env.VITE_API_URI}/components/routes/orders/create.php`,
         orderData
       );
+      console.log(data);
       if (data.success) {
         setLoader(false);
         setDisplayForm(false);
