@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import axios from "axios";
 import { useCart } from "../contexts/Cart";
@@ -51,8 +51,8 @@ const OrderForm = ({ dispalyForm, setDisplayForm, setShowPOPUp }) => {
         `${import.meta.env.VITE_API_URI}/components/routes/orders/create.php`,
         orderData
       );
-      console.log(data);
       if (data.success) {
+        sendPushNotification();
         setLoader(false);
         setDisplayForm(false);
         setCart([]);
@@ -82,6 +82,17 @@ const OrderForm = ({ dispalyForm, setDisplayForm, setShowPOPUp }) => {
         duration: 2000,
         position: "top-right",
       });
+    }
+  };
+
+  const sendPushNotification = async () => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URI}/push-notification/send-push.php`
+      );
+      console.log(data);
+    } catch (error) {
+      console.error("Error sending push notification:", error);
     }
   };
 
