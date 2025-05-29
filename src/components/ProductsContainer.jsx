@@ -47,18 +47,18 @@ const ProductsContainer = ({
 
   // -------------------------------------------------------------//
 
-  const imageUrls = products.map(
-    (p) => `${import.meta.env.VITE_API_URI}/uploaded_files/${p.image}`
-  );
+  // const imageUrls = products.map(
+  //   (p) => `${import.meta.env.VITE_API_URI}/uploaded_files/${p.image}`
+  // );
 
-  // Cache these images
-  if ("caches" in window) {
-    caches.open("product-images-v1").then((cache) => {
-      cache.addAll(imageUrls).catch((err) => {
-        console.error("Failed to cache images:", err);
-      });
-    });
-  }
+  // // Cache these images
+  // if ("caches" in window) {
+  //   caches.open("product-images-v1").then((cache) => {
+  //     cache.addAll(imageUrls).catch((err) => {
+  //       console.error("Failed to cache images:", err);
+  //     });
+  //   });
+  // }
 
   //-----------------------------------------------------------------//
 

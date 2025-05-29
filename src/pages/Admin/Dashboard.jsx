@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { dashboardPages } from "../../constants";
 import { Link } from "react-router-dom";
 import PWAInstallButton from "../../components/PWAInstallButton";
@@ -7,12 +7,11 @@ import axios from "axios";
 const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const [subscriptionData, setSubscriptionData] = useState({
-    endpoint: "",
-    expiexpirationTime: null,
-    p256dh: "",
-    auth: "",
-  });
+  const endpointRef = useRef();
+  const p256dhRef = useRef();
+  const authRef = useRef();
+
+  const enableNoficRef = useRef();
 
   const vapidPublicKey =
     "BIVb3sLkxxgz9PqNYogz7kmE-VTYvF3rgkrliFtaQmMDs_vf_NbZP-HEQrmXkfFDEXKAM18Th7uU36rZ_J9lhBw";
@@ -30,7 +29,7 @@ const Dashboard = () => {
     return outputArray;
   }
 
-  useEffect(() => {
+  const subscribeUser = async () => {
     Notification.requestPermission()
       .then(function (permission) {
         if (permission === "granted") {
@@ -53,19 +52,18 @@ const Dashboard = () => {
                     new Uint8Array(subscription.getKey("auth"))
                   )
                 );
-                setSubscriptionData({
-                  endpoint: subscription.endpoint,
-                  expirationTime: subscription.expirationTime,
-                  p256dh: p256dh,
-                  auth: auth,
-                });
+                endpointRef.current.innerText = subscription.endpoint;
+                p256dhRef.current.innerText = p256dh;
+                authRef.current.innerText = auth;
                 saveSubscriptionData(subscription.endpoint, p256dh, auth);
               });
             const subscription = await sw.pushManager.getSubscription();
-            // if (subscription) {
-            //   await subscription.unsubscribe();
-            //   console.log("Unsubscribed from push notifications.");
-            // }
+            if (subscription) {
+              enableNoficRef.current.style.display = "none";
+              endpointRef.current.style.display = "none";
+              authRef.current.style.display = "none";
+              p256dhRef.current.style.display = "none";
+            }
           });
         } else {
           console.log("Notification permission denied.");
@@ -74,22 +72,29 @@ const Dashboard = () => {
       .catch((error) => {
         console.error("Error requesting notification permission:", error);
       });
-  }, []);
+  };
 
   const saveSubscriptionData = async (endpoint, p256dh, auth) => {
     try {
-      const { data } = await axios.post(
-        `${
-          import.meta.env.VITE_API_URI
-        }/push-notification/save-subscribers.php?endpoint=${endpoint}&p256dh=${p256dh}&auth=${auth}&user_id=${
-          user?.id
-        }`
-      );
+      const url = `${
+        import.meta.env.VITE_API_URI
+      }/push-notification/save-subscribers.php?endpoint=${encodeURIComponent(
+        endpoint
+      )}&p256dh=${encodeURIComponent(p256dh)}&auth=${encodeURIComponent(
+        auth
+      )}&user_id=${user?.id}`;
+      const { data } = await axios.post(url);
       console.log(data);
     } catch (error) {
       console.error("Error saving subscription data:", error);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      subscribeUser();
+    }
+  }, []);
 
   return !user ? (
     <>
@@ -115,6 +120,19 @@ const Dashboard = () => {
         </main>
       </div>
       <PWAInstallButton />
+      <div ref={enableNoficRef} id="enable-notification">
+        <button
+          onClick={() => {
+            subscribeUser();
+          }}>
+          Enable Notification
+        </button>
+      </div>
+      <div className="user-info">
+        <p ref={endpointRef}>endpoint</p>
+        <p ref={p256dhRef}>p256dh</p>
+        <p ref={authRef}>auth</p>
+      </div>
     </div>
   );
 };
